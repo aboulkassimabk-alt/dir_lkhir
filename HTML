@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veo3 Maroc Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@700;900&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="logo"><span class="badge">REAL</span> Veo<b>3</b> Maroc</div>
+  <div class="nav">
+    <button class="btn mono" onclick="openModal()">🔑 API KEY</button>
+    <button class="btn btn-primary" onclick="document.getElementById('gen').scrollIntoView({behavior:'smooth'})">ابدأ</button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>صاوب فيديوهات <span>حقيقية 100%</span><br>طوال حتى 1 ساعة</h1>
+  <p>ماكاينش Veo3 فابور بلا حدود - هاد الموقع كيخدم بـ API Key ديالك + موديلات مجانية</p>
+  <div class="truth">
+    <b>⚠️ الحقيقة:</b> Veo3 كيخلص $0.75/ثانية - الفيديو الطويل كيتصاوب بدمج مقاطع قصيرة
+  </div>
+</section>
+
+<div class="container" id="gen">
+  <aside class="sidebar">
+    <h3>الموديلات الحقيقية</h3>
+    <div class="model active" onclick="selectModel(this,'veo3')"><div><b>Veo 3</b><small>يحتاج API Key</small></div><div class="dot"></div></div>
+    <div class="model" onclick="selectModel(this,'luma')"><div><b>Luma Dream</b><small>مجاني 10000/10000</small></div><div class="dot" style="background:#44ffaa"></div></div>
+    <div class="model" onclick="selectModel(this,'stable')"><div><b>Stable Video</b><small>مجاني مفتوح</small></div><div class="dot" style="background:#44aaff"></div></div>
+
+    <h3>الإعدادات</h3>
+    <label>نسبة العرض</label>
+    <select id="ratio"><option>16:9 يوتيوب</option><option>9:16 تيك توك</option><option>1:1 انستغرام</option></select>
+    <label>المدة</label>
+    <select id="dur"><option>5s</option><option>8s Veo3</option><option>60s Pro</option></select>
+  </aside>
+
+  <main class="main">
+    <div class="tabs">
+      <div class="tab active" onclick="switchTab('video',this)">🎬 فيديو</div>
+      <div class="tab" onclick="switchTab('long',this)">⏱️ فيديو 1h</div>
+    </div>
+
+    <div id="tab-video">
+      <label>Prompt - وصف الفيديو</label>
+      <textarea id="prompt">رجل مغربي يمشي في سوق مراكش القديم، لقطة سينمائية 4K واقعية</textarea>
+      <button class="btn btn-primary big" onclick="generate()">⚡ صاوب الفيديو الحقيقي</button>
+
+      <div class="progress" id="progress">
+        <div class="mono top"><span id="ptext">كيوجد...</span><span id="ppercent">0%</span></div>
+        <div class="bar"><i id="pbar"></i></div>
+        <div class="mono logs" id="logs">> connecting...</div>
+      </div>
+
+      <div class="result" id="result">
+        <video id="vid" controls></video>
+        <div class="row">
+          <button class="btn btn-primary" onclick="downloadVideo()">⬇️ تحميل MP4 4K</button>
+          <button class="btn" onclick="location.reload()">🔄 جديد</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-long" style="display:none">
+      <h3>باني الفيديو الطويل</h3>
+      <div class="timeline" id="timeline">
+        <div class="scene"><span>🎬 مشهد 1 - 8s</span><span>00:00</span></div>
+      </div>
+      <div class="row">
+        <button class="btn" onclick="addScene()">+ إضافة مشهد</button>
+        <button class="btn btn-primary" onclick="merge()">🔗 دمج 1h</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="modal" id="modal">
+  <div class="box">
+    <h3>🔑 Veo3 API Key</h3>
+    <p>جيبو من aistudio.google.com - $300 فابور</p>
+    <input id="apiKey" type="password" placeholder="AIzaSy...">
+    <div class="row">
+      <button class="btn btn-primary" onclick="saveKey()">حفظ</button>
+      <button class="btn" onclick="closeModal()">إلغاء</button>
+    </div>
+    <p id="keyStatus" class="mono ok"></p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
